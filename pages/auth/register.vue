@@ -33,10 +33,11 @@
     })
     async function register(){
         try {
-            const user = await $fetch('/api/auth/register',{
+            const user = await $fetch('/api/register',{
                 method: "POST",
                 body: formData,
             })
+            console.log(user)
         } catch (error) {
             console.log(error)
         }
