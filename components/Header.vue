@@ -9,25 +9,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/">Home</NuxtLink>
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Home</NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/">Posts</NuxtLink>
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Posts</NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/">Profile</NuxtLink>
-                </li>
-                <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/auth/register">Register</NuxtLink>
-                </li>
-                <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/">Login</NuxtLink>
-                </li>
-                <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active"  to="/">Logout</NuxtLink>
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Profile</NuxtLink>
                 </li>
             </ul>
             <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/register">Register</NuxtLink>
+                    </li>
+                    <li class="nav-item">
+                        <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/login">Login</NuxtLink>
+                    </li>
+                    <li class="nav-item">
+                        <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Logout</NuxtLink>
+                    </li>
+                </ul>
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -36,3 +38,8 @@
         </nav>
     </div>
 </template>
+<style scoped>
+.active-nav{
+    /* color: black; */
+}
+</style>

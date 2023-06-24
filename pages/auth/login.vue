@@ -6,11 +6,7 @@
                     <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </div>
-            <form @submit.prevent="register()">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name </label>
-                    <input type="text" class="form-control"  aria-describedby="emailHelp" id="name" v-model="formData.name">
-                </div>
+            <form @submit.prevent="login()">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="text" class="form-control"  aria-describedby="emailHelp" id="email" v-model="formData.email">
@@ -20,11 +16,7 @@
                     <label for="Password" class="form-label">Password</label>
                     <input type="password" class="form-control"  aria-describedby="emailHelp" id="Password" v-model="formData.password">
                 </div>
-                <div class="mb-3">
-                    <label for="c_password" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="c_password" v-model="formData.c_password">
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
@@ -34,12 +26,10 @@
     const formData = reactive({
         name: '',
         email: '',
-        password: '',
-        c_password: '',
     })
-    async function register(){
+    async function login(){
         try {
-            const user = await $fetch('/api/auth/register',{
+            const user = await $fetch('/api/auth/login',{
                 method: "POST",
                 body: formData,
             })
