@@ -16,26 +16,37 @@
                     <label for="Password" class="form-label">Password</label>
                     <input type="password" class="form-control"  aria-describedby="emailHelp" id="Password" v-model="formData.password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">
+                    Login
+                    <div v-if="loading" class="spinner-border spinner-border-sm ms-2 text-light" role="status">
+                    </div>
+                </button>
             </form>
         </div>
     </div>
 </template>
 <script setup>
+  import { useToast } from "vue-toastification";
+
     const errors = ref([])
+    const loading = ref(false)
     const formData = reactive({
-        name: '',
+        password: '',
         email: '',
     })
     async function login(){
+        loading.value = true
         try {
             const user = await $fetch('/api/auth/login',{
                 method: "POST",
                 body: formData,
             })
+            toast.success("You are Logged in", {})
             return navigateTo('/')
         } catch (error) {
-            errors.value = Object.values(error.data.data).flat()
+            // errors.value = Object.values(error.data.data).flat()
+        } finally{
+            loading.value = false
         }
     }
 </script>

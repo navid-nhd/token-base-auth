@@ -13,5 +13,8 @@
     "@types/node": "^18",
     "nuxt": "^3.6.0",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "vue-toastification": "^2.0.0-rc.5"
   }
 }
