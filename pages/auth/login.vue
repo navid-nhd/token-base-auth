@@ -27,7 +27,7 @@
 </template>
 <script setup>
   import { useToast } from "vue-toastification";
-
+    const Toast = useToast()
     const errors = ref([])
     const loading = ref(false)
     const formData = reactive({
@@ -41,10 +41,10 @@
                 method: "POST",
                 body: formData,
             })
-            toast.success("You are Logged in", {})
+            Toast.success("You are Logged in", {})
             return navigateTo('/')
         } catch (error) {
-            // errors.value = Object.values(error.data.data).flat()
+            errors.value = Object.values(error.data.data).flat()
         } finally{
             loading.value = false
         }

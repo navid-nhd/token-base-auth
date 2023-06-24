@@ -33,6 +33,8 @@
     </div>
 </template>
 <script setup>
+import { useToast } from "vue-toastification";
+    const Toast = useToast()
     const errors = ref([])
     const loading = ref(false)
     const formData = reactive({
@@ -48,6 +50,7 @@
                 method: "POST",
                 body: formData,
             })
+            Toast.success("You are Registered", {})
             return navigateTo('/')
         } catch (error) {
             errors.value = Object.values(error.data.data).flat()
