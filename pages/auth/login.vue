@@ -26,6 +26,9 @@
     </div>
 </template>
 <script setup>
+    definePageMeta({
+        middleware : 'guest'
+    })
   import { useToast } from "vue-toastification";
 
     const { authUser } = useAuth()
