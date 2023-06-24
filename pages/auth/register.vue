@@ -34,6 +34,7 @@
 </template>
 <script setup>
 import { useToast } from "vue-toastification";
+const { authUser } = useAuth()
     const Toast = useToast()
     const errors = ref([])
     const loading = ref(false)
@@ -50,6 +51,7 @@ import { useToast } from "vue-toastification";
                 method: "POST",
                 body: formData,
             })
+            authUser.value = user;
             Toast.success("You are Registered", {})
             return navigateTo('/')
         } catch (error) {

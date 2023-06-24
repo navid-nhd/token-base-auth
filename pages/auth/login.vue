@@ -27,6 +27,8 @@
 </template>
 <script setup>
   import { useToast } from "vue-toastification";
+
+    const { authUser } = useAuth()
     const Toast = useToast()
     const errors = ref([])
     const loading = ref(false)
@@ -41,6 +43,7 @@
                 method: "POST",
                 body: formData,
             })
+            authUser.value = user;
             Toast.success("You are Logged in", {})
             return navigateTo('/')
         } catch (error) {

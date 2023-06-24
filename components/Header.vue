@@ -14,21 +14,25 @@
                 <li class="nav-item">
                     <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Posts</NuxtLink>
                 </li>
-                <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Profile</NuxtLink>
+                <li class="nav-item" v-if="authUser">
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/profile">Profile</NuxtLink>
                 </li>
             </ul>
             <form class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/register">Register</NuxtLink>
-                    </li>
-                    <li class="nav-item">
-                        <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/login">Login</NuxtLink>
-                    </li>
-                    <li class="nav-item">
-                        <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Logout</NuxtLink>
-                    </li>
+                    <template v-if="authUser">
+                        <li class="nav-item">
+                            <NuxtLink class="nav-link" activeClass="active-nav"  @click="logout()" to="/">Logout</NuxtLink>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li class="nav-item">
+                        <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/register">Register</NuxtLink>
+                        </li>
+                        <li class="nav-item">
+                            <NuxtLink class="nav-link" activeClass="active-nav"  to="/auth/login">Login</NuxtLink>
+                        </li>
+                    </template>
                 </ul>
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -38,6 +42,19 @@
         </nav>
     </div>
 </template>
+<script setup>
+import { useToast } from "vue-toastification";
+const { authUser } = useAuth()
+    const Toast = useToast()
+    async function logout(){
+        const {data ,error} = await useFetch('/api/auth/logout',{
+            method : 'POST'
+        })
+        authUser.value = null;
+        Toast.warning("You are logged out!", {})
+        return navigateTo('/')
+    }
+</script>
 <style scoped>
 .active-nav{
     /* color: black; */
