@@ -16,7 +16,7 @@ export default defineEventHandler(async(event) => {
             maxAge : new Date(0),
             path : '/'
         })
-        console.log(user)
+        // console.log(user)
     } catch (error) {
         
     }
