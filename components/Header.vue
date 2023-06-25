@@ -12,7 +12,7 @@
                     <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Home</NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/">Posts</NuxtLink>
+                    <NuxtLink class="nav-link" activeClass="active-nav"  to="/posts">Posts</NuxtLink>
                 </li>
                 <li class="nav-item" v-if="authUser">
                     <NuxtLink class="nav-link" activeClass="active-nav"  to="/profile">Profile</NuxtLink>

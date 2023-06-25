@@ -4,18 +4,13 @@ export default defineEventHandler(async (event) => {
 
     try {
         const posts = await $fetch(`${apiBase}/posts`,{
-            'Accept' : 'application/json',
-            'Authorization' : `Bearer ${token}`
+            headers: {
+                'Accept' : 'application/json',
+                'Authorization' : `Bearer ${token}`
+            }
         })
-        return 
+        return posts
     } catch (error) {
-        if( error.statsCode == 401 ){
-        setCookie(event, 'token' , '',{
-            httpOnly : true,
-            secure : true ,
-            maxAge : new Date(0),
-            path : '/'
-        })
-        }
+        return error
     }
 })
